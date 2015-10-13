@@ -10,7 +10,7 @@ model.name = "國道五號";
 
 
 var url ="http://pda.freeway.gov.tw/m2/pdatraveltime/calc/r/1/fw/10050/fl/0/tw/10050/tl/38600";
-
+var distance = 38.6;
 
 function downloadData(url,callback){
 	http.get(url,function(res){
@@ -44,14 +44,15 @@ function getData(){
 
 		var avgSpeed = tem_avg/count;
 
-		model.trafficStatus = GetTrafficStatusBySpeed(avgSpeed);
+		model.trafficStatus = getTrafficStatusBySpeed(avgSpeed);
 		model.contributeValue = contributeCalcu(avgSpeed);
+		model.spendTime = Math.round( distance/(avgSpeed/60));
 		deferred.resolve(model);	
 	});
 	return deferred;
 }
 
-function GetTrafficStatusBySpeed(speed){
+function getTrafficStatusBySpeed(speed){
 
 	if(speed >= 80)
 		return "暢";

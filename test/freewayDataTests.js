@@ -8,11 +8,11 @@ var expect = chai.expect;
 var freewayData = require('../src/freewayData');
 
 describe("Get Remote data and parse to model",function(){
-	if("Get Remote Data",function(done){
+	it("Get Remote Data",function(done){
+		this.timeout(20000);
 		var getData = freewayData.getSnowData();
 		getData.done(function(data){
-			console.log("Success");
-			assert.equal(1,0);
+			console.log(data);
 			done();
 		})
 	});
