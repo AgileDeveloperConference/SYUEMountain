@@ -13,8 +13,6 @@ var path = require('./model/pathData');
 
 function downloadData(title,callback){
 	var locations = path[title];
-	console.log(title);
-	console.log(locations);
 	bing.getDrivingRoute(locations,function(err,response){
 		callback(response);
 	});
