@@ -16,6 +16,7 @@ function downloadData(url,callback){
 	http.get(url,function(res){
 		var data = "";
 		res.on('data',function(chunk){
+			console.log(chunk);
 			data += chunk;
 		});
 
