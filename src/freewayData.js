@@ -4,7 +4,7 @@ var http = require("http");
 var cheerio = require("cheerio");
 var promise = require('jquery-deferred');
 
-var model = require("./model/trafficModel");
+var model = require("./model/trafficModel")();
 model.title = "雪山隧道";
 model.name = "國道五號";
 

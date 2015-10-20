@@ -1,8 +1,11 @@
 
-module.exports = {
-	title:"",
-	name:"",	
-	spendTime:"",
-	trafficStatus:"",
-	contributeValue:""
-};
+
+module.exports = function(){
+	return {	
+		title : "",
+		name : "",
+		spendTime : "",
+		trafficStatus : "",
+		contributeValue : ""
+	} 
+}
