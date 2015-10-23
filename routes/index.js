@@ -30,4 +30,10 @@ router.get('/PathInfos',function(req,res){
 	})
 });
 
+router.get('/SaveUser', function (req, res){
+	res.json({
+		succed:true
+	});
+});
+
 module.exports = router;

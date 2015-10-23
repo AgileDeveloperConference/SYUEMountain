@@ -14,7 +14,21 @@ var app = express();
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
+//DB area
+var MongoClient = require('mongodb').MongoClient
+        ,assert = require('assert');
 
+// // Connection URL 
+var url = 'mongodb://localhost:27017/data';
+
+MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected correctly to server");
+  console.log("已經成功連線ＤＢ");
+  db.close();
+});
+
+//End DB area
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
@@ -27,6 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/PathInfos',routes);
+app.use('/SaveUser',routes);
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
