@@ -5,7 +5,7 @@ var promise = require('jquery-deferred');
 /* src */
 var freeWayData = require('../src/freewayData');
 var highWayData = require('../src/highwayData');
-
+var userData = require('../src/userData');
 /* GET home page. */
 
 router.get('/', function(req, res) {
@@ -30,9 +30,16 @@ router.get('/PathInfos',function(req,res){
 	})
 });
 
-router.post('/SaveUser', function (req, res){
-    var token = req.body.token;
-    res.send(token);
+router.post('/User', function (req, res){
+    var accessToken = req.body.accessToken;
+	var result = {};
+	var data1 = userData.getFBUID(accessToken);
+	promise.when(data1).done(function(){
+		var arg = arguments;
+				argCount = arg.length;
+		console.log(arg[0]);
+		res.json(arg[0]);
+	})
 });
 
 module.exports = router;
