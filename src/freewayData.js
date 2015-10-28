@@ -55,14 +55,12 @@ function getData(){
 
 function getTrafficStatusBySpeed(speed){
 
-	if(speed >= 80)
-		return "暢";
-	if(speed >= 60)
-		return "可";
+	if(speed >= 70)
+		return "G";
 	if(speed >= 40)
-		return "微";
+		return "Y";
 	if(speed < 40)
-		return "塞";
+		return "R";
 
 }
 

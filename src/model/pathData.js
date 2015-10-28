@@ -4,12 +4,13 @@ module.exports = {
 		name:"台九線",
 		locations:[
 		'台北火車站',
+		'青潭溪',
 		'坪林',
 		'宜蘭火車站'
 		]
 	},
 	"北橫公路":{
-		name:"台九線",
+		name:"台七線",
 		locations:[
 		'台北火車站',
 		'雙溪',

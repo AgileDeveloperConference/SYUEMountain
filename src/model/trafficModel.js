@@ -6,6 +6,9 @@ module.exports = function(){
 		name : "",
 		spendTime : "",
 		trafficStatus : "",
-		contributeValue : ""
-	} 
-};
+		contributeValue : "",
+		checkPoints:[
+			{x:"",y:""}
+		] 
+	};
+}

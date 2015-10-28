@@ -25,12 +25,19 @@ function getData(title){
 	downloadData(locations,function(data){
 		if(!data)
 			return;
-		console.log(model);		
+		
 		model.title = title;
 		model.name = highwayInfo.name;
 		model.spendTime =Math.round((data.resourceSets[0].resources[0].travelDuration)/60);
 		model.trafficStatus =getTrafficStatusBySpeed(((data.resourceSets[0].resources[0].travelDistance)/model.spendTime)*60);
 		model.contributeValue = 100;
+		model.checkPoints = [];
+		var locationsCount = data.resourceSets[0].resources[0].routeLegs.length;	
+		for (var i=0; i< locationsCount ;i++){
+			var point = data.resourceSets[0].resources[0].routeLegs[i].actualEnd.coordinates;
+			var checkPoint = {x:point[0],y:point[1]};
+			model.checkPoints.push(checkPoint);	
+		}
 		deferred.resolve(model);	
 	});
 	return deferred;
@@ -39,13 +46,11 @@ function getData(title){
 function getTrafficStatusBySpeed(speed){
 
 	if(speed >= 50)
-		return "暢";
+		return "G";
 	if(speed >= 30)
-		return "可";
-	if(speed >= 20)
-		return "微";
-	if(speed < 20)
-		return "塞";
+		return "Y";
+	if(speed < 30)
+		return "R";
 
 }
 
