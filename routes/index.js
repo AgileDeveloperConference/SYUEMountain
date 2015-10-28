@@ -30,10 +30,9 @@ router.get('/PathInfos',function(req,res){
 	})
 });
 
-router.get('/SaveUser', function (req, res){
-	res.json({
-		succed:true
-	});
+router.post('/SaveUser', function (req, res){
+    var token = req.body.token;
+    res.send(token);
 });
 
 module.exports = router;
