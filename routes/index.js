@@ -30,7 +30,7 @@ router.get('/PathInfos',function(req,res){
 	})
 });
 
-router.post('/User', function (req, res){
+router.post('/Users', function (req, res){
     var accessToken = req.body.accessToken;
 	var result = {};
 	var data1 = userData.getFBUID(accessToken);

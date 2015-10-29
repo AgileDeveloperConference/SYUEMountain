@@ -52,7 +52,7 @@ function saveUser(fbUID,name){
 
 function getFBUID(accessToken){
 	var deferred = new promise.Deferred();
-	FB.api('me', { fields: ['id', 'name'], access_token: accessToken }, function (res) {
+	FB.api('me', { fields: ['id', 'name', 'email'], access_token: accessToken }, function (res) {
 	    saveUser(res.id,res.name);
 	    deferred.resolve(res);
 	});
