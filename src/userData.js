@@ -22,13 +22,16 @@ var User = mongoose.model('User',{
 	name : String
 });
 
-function saveUser(fbUID,name){
-	process.nextTick(function() {
+function saveUser(fbUID,name,email,dtd){
 	    User.findOne({ fbUID: fbUID }, function(err, user) {
+	    	var res = {};
 			if(err) { console.log(err); }
 			console.log(user);
 			if (!err && user != null) {
-				done(null, user);
+				res = {
+					succeed:false
+				};
+				dtd.resolve(res);
 			} else {
 				console.log("start storing...");
 				var user = new User({
@@ -42,19 +45,24 @@ function saveUser(fbUID,name){
 						console.log(err);
 					} else {
 						console.log("saving user ...");
-						done(null, user);
+						res = {
+							id:fbUID,
+							name:name,
+							email:email,
+							succeed:true
+						};
+						dtd.resolve(res);
 					};
 				});
 			};
 		});
-	});
 }	
 
 function getFBUID(accessToken){
 	var deferred = new promise.Deferred();
 	FB.api('me', { fields: ['id', 'name', 'email'], access_token: accessToken }, function (res) {
-	    saveUser(res.id,res.name);
-	    deferred.resolve(res);
+	    	saveUser(res.id,res.name,res.email,deferred);
+			console.log(res);
 	});
 	return deferred;
 }

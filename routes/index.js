@@ -37,7 +37,7 @@ router.post('/Users', function (req, res){
 	promise.when(data1).done(function(){
 		var arg = arguments;
 				argCount = arg.length;
-		console.log(arg[0]);
+		// console.log(arg[0]);
 		res.json(arg[0]);
 	})
 });
