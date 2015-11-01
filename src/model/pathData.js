@@ -13,7 +13,8 @@ module.exports = {
 		name:"台七線",
 		locations:[
 		'台北火車站',
-		'雙溪',
+		'角板山',
+		'明池',
 		'宜蘭火車站'
 		]
 	},
@@ -21,6 +22,7 @@ module.exports = {
 		name:"台二線",
 		locations:[
 		'台北火車站',
+		'瑞芳',
 		'雙溪',
 		'宜蘭火車站'
 		]

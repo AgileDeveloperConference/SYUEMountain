@@ -5,7 +5,7 @@ var promise = require('jquery-deferred');
 /* src */
 var freeWayData = require('../src/freewayData');
 var highWayData = require('../src/highwayData');
-
+var contribute = require('../src/contribute');
 /* GET home page. */
 
 router.get('/', function(req, res) {
@@ -21,13 +21,15 @@ router.get('/PathInfos',function(req,res){
 	promise.when(data1,data2,data3,data4).done(function(){
 		var arg = arguments;
 				argCount = arg.length;
-
 		for (var i=0; i<argCount;i++){
 			result.push(arg[i]);
 		}
-		console.log(result);
+	
+		contribute.setContributes(result);
+	
 		res.json(result);
 	})
 });
 
+var highWayData = require('../src/highwayData');
 module.exports = router;

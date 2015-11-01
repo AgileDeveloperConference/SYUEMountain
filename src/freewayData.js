@@ -16,7 +16,6 @@ function downloadData(url,callback){
 	http.get(url,function(res){
 		var data = "";
 		res.on('data',function(chunk){
-			console.log(chunk);
 			data += chunk;
 		});
 
@@ -48,6 +47,7 @@ function getData(){
 		model.trafficStatus = getTrafficStatusBySpeed(avgSpeed);
 		model.contributeValue = contributeCalcu(avgSpeed);
 		model.spendTime = Math.round( distance/(avgSpeed/60));
+		model.speed = avgSpeed;
 		deferred.resolve(model);	
 	});
 	return deferred;
@@ -65,7 +65,7 @@ function getTrafficStatusBySpeed(speed){
 }
 
 function contributeCalcu(avgSpeed){
-	return 100;
+	return 0;
 }
 
 module.exports = {
