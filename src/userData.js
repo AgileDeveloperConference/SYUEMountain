@@ -29,9 +29,9 @@ function saveUser(fbUID,name,email,dtd){
 	    	var res = {};
 			if(err) { console.log(err); }
 			// console.log(user);
-			if (!err && user == null) {
+			if (!err) {
 				res = {
-					errorMsg:"Have saved!",
+					errorMsg:"Wrong!",
 					succeed:false
 				};
 				dtd.resolve(res);
