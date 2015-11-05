@@ -5,30 +5,31 @@ var FB = require('fb');
 var promise = require('jquery-deferred');
 var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');
+var User = require('./model/userModel');
 
-// DB stuff
-var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
-var mongodbUri = 'mongodb://tony:tony123@ds045464.mongolab.com:45464/agilemount';
-var mongooseUri = uriUtil.formatMongoose(mongodbUri);
+// // DB stuff
+// var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
+//                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
+// var mongodbUri = 'mongodb://tony:tony123@ds045464.mongolab.com:45464/agilemount';
+// var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 
-// Connect to the db
-mongoose.connect(mongooseUri, options);
-var conn = mongoose.connection;             
+// // Connect to the db
+// mongoose.connect(mongooseUri, options);
+// var conn = mongoose.connection;             
  
-conn.on('error', console.error.bind(console, 'connection error:'));
-var User = mongoose.model('User',{
-	fbUID : String,
-	name : String,
-	email : String
-});
+// conn.on('error', console.error.bind(console, 'connection error:'));
+// var User = mongoose.model('User',{
+// 	fbUID : String,
+// 	name : String,
+// 	email : String
+// });
 
 function saveUser(fbUID,name,email,dtd){
 	    User.findOne({ fbUID: fbUID }, function(err, user) {
 	    	var res = {};
 			if(err) { console.log(err); }
 			// console.log(user);
-			if (!err && user != null) {
+			if (!err && user == null) {
 				res = {
 					errorMsg:"Have saved!",
 					succeed:false
@@ -39,6 +40,7 @@ function saveUser(fbUID,name,email,dtd){
 				var user = new User({
 					fbUID: fbUID,
 					name: name,
+					email: email,
 					created: Date.now()
 				});
 
