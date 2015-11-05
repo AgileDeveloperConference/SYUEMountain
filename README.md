@@ -49,12 +49,13 @@ Api Request
 	   "userId" : "1" //拿fbUid	
 	}
 
+user	
 
-user
+| userId        | roadId        | contributeValue  | DateStart | DateEnd | isSucess |
+| ------------- |:-------------:| ----------------:| ---------:| -------:| --------:|
+|       1       |       1       |                  | 20150101  |         |          |
 
-userId , roadId, contributeValue,  DateStart , DateEnd  ,isSucess
-  1			  1                       20150101    
-	
+
 ---
 
 ##更新使用完成該路線狀態
@@ -76,9 +77,9 @@ Api Request
 
 user
 
-userId , roadId, contributeValue, DateStart , DateEnd ,isSucess
-  1			  1				80			  20150101   20150102  true
-
+| userId        | roadId        | contributeValue  | DateStart | DateEnd | isSucess |
+| ------------- |:-------------:| ----------------:| ---------:| -------:| --------:|
+|       1       |       1       |       80         | 20150101  | 20150102|   true   |
 
 ---
 

@@ -19,16 +19,18 @@ var conn = mongoose.connection;
 conn.on('error', console.error.bind(console, 'connection error:'));
 var User = mongoose.model('User',{
 	fbUID : String,
-	name : String
+	name : String,
+	email : String
 });
 
 function saveUser(fbUID,name,email,dtd){
 	    User.findOne({ fbUID: fbUID }, function(err, user) {
 	    	var res = {};
 			if(err) { console.log(err); }
-			console.log(user);
+			// console.log(user);
 			if (!err && user != null) {
 				res = {
+					errorMsg:"Have saved!",
 					succeed:false
 				};
 				dtd.resolve(res);
