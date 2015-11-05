@@ -12,7 +12,7 @@
 
 Api Request
 
-	http://syuemountain-agiledc.rhcloud.com/PathInfos
+	http://snowmoutain-agiledc.rhcloud.com/pathInfos
 
 Api Response
 
