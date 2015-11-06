@@ -65,7 +65,14 @@ function setPath(fbUID, roadId){
 	User.findOne({	fbUID : fbUID}, function(err, user){
 			var res = {};
 			// catch error
-			if(err) { console.log(err); }			
+			if(err) { 
+				console.log(err); 
+				res = {
+				    "resultCode": "E01",
+				    "resultmsg" : err
+				};
+				deferred.resolve(res);
+			}			
 			else{
 				// not error occur
 				console.log("find fbUid!");
