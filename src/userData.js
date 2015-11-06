@@ -28,7 +28,7 @@ function saveUser(fbUID, name, email, dtd){
 						roadId : 0,
 						DateStart:0,
 						DateEnd :0,
-						isSucess:false,
+						isSuccess:false,
 						created : Date.now()
 
 					});
@@ -39,7 +39,7 @@ function saveUser(fbUID, name, email, dtd){
 						} else {
 							console.log("saving user ...");
 							res = {
-								id:fbUID,
+								fbUID:fbUID,
 								name:name,
 								email:email,
 								succeed:true
