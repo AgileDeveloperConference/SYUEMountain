@@ -1,5 +1,35 @@
 #SnowMoutainApi
 ---
+### Users
+說明
+
+	註冊使用者，回應是否已成功
+	
+Api Request
+
+	Post http://snowmoutain-agiledc.rhcloud.com/Users
+	{
+			"accessToken" : CAAXeZCZBfea8cBAGwfothTMzL3PW5N1O53HjkhZCZBrNLjbA0aO1LvsvBCSy0ZBnZAcGZAPhtKFhYEMgi6vsekGtNNYpz8KOaNLb8PsXIoVZBxwGyg8iTbpYs9lHZB0x7nQZBYC4J1ZBRukcY2a4ASDni0tC0tBpJzEpxt6hM2mLRwUR7sJH8oh8E1viK82E2ee0VXm2SBM13LTQv4pstShbZAh3
+	}
+	
+
+Api Response
+	
+		Success 
+		{
+		  "id": "628531240583653",
+		  "name": "郭君君",
+		  "succeed": true
+		}
+		
+				
+		False
+		{
+			"errorMsg": "Already exist!",
+  			"succeed": false		
+		}
+
+---
 
 ### PathInfos
 說明
