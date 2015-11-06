@@ -1,11 +1,11 @@
-#SnowMoutainApi
+#SnowMoutain RESTFul Api 
 ---
-### Users
-說明
+## Post: /Users
+###說明
 
-	註冊使用者，回應是否已成功
+	新增使用者，回應是否已成功
 	
-Api Request
+###Api Request
 
 	Post http://snowmoutain-agiledc.rhcloud.com/Users
 	{
@@ -13,26 +13,31 @@ Api Request
 	}
 	
 
-Api Response
+###Api Response
 	
-		Success 
-		{
-		  "id": "628531240583653",
-		  "name": "郭君君",
-		  "succeed": true
-		}
-		
-				
-		False
-		{
-			"errorMsg": "Already exist!",
-  			"succeed": false		
-		}
+	Success 
+	{
+		"userId": "628531240583653",
+		"name": "郭君君",
+		"resultCode": S01,
+		"resultmsg" : "Suceess"
+	}
+	
+	Error{
+		"resultCode": E01,
+		"resultmsg" : "account already exist"
+	}
 
+###備註
+
+	S01 : Success.
+	E01 : Account already exit.
+	E02 : Fb Token has expired.
+		
 ---
 
-### PathInfos
-說明
+## GET: /PathInfos
+###說明
 
 	取得前往宜蘭四條路線之資訊。
 	* 雪山隧道
@@ -40,11 +45,11 @@ Api Response
 	* 濱海公路
 	* 北橫公路
 
-Api Request
+###Api Request
 
 	Get http://snowmoutain-agiledc.rhcloud.com/pathInfos
 
-Api Response
+###Api Response
 
 	[
 		{
@@ -62,24 +67,39 @@ Api Response
 		 				]
 		 }
 	]
-	
+
+###備註
+
+	備註
 	
 ---
 
-##使用者所選擇的路線
-說明
+##POST: /Users/{userId}/Paths
+###說明
 	
-	使用者所選擇的路線
+	使用者設定所選擇的路線
 
-Api Request
+###Api Request
 
-	Post http://snowmoutain-agiledc.rhcloud.com/path	
+	Post http://snowmoutain-agiledc.rhcloud.com/Users/1/Paths	
 	{
-	   "roadId" : "1",
-	   "userId" : "1" //拿fbUid
+	   "roadId" : "1"
 	}
 
-user	
+###Api Response
+
+	{
+		"resultCode": S01,
+		"resultmsg" : "Suceess"
+	}
+
+###備註
+
+	S01:Success
+	E01:Fail
+
+
+###User(Table)	
 
 | userId        | roadId        | contributeValue  | DateStart | DateEnd | isSucess |
 | ------------- |:-------------:| ----------------:| ---------:| -------:| --------:|
@@ -88,24 +108,35 @@ user
 
 ---
 
-##更新使用完成該路線狀態
+##POST: /Users/{userId}/Paths/{roadId}
 
-說明
+###說明
 	
-	使用者是否成功完成該路線檢查點
+	更新使用者路線檢查點狀態
 	
-Api Request
+###Api Request
 
-	Post  http://snowmoutain-agiledc.rhcloud.com/checkPath
+	Post  
+	http://snowmoutain-agiledc.rhcloud.com/Users/{userId}/Paths/{roadId}
 	
 	{
-		"userId" : "1",
-		"roadId" : "1",
 		"success" : true	,
 		"contributeValue" : 80
 	}
 
-user
+###Api Response
+
+	{
+		"resultCode": S01,
+		"resultmsg" : "Suceess"
+	}
+
+###備註
+
+	S01:Success
+	E01:Fail
+
+###User(Table)
 
 | userId        | roadId        | contributeValue  | DateStart | DateEnd | isSucess |
 | ------------- |:-------------:| ----------------:| ---------:| -------:| --------:|
@@ -113,17 +144,18 @@ user
 
 ---
 
-##取得使用者捐記錄
+##Get : /Users/{userId}/DonateHistorys
 
-說明
+###說明
 
 	取得使用者捐記錄
 	
-Api Request
+###Api Request
 
-	Get http://snowmoutain-agiledc.rhcloud.com/contribution?userId='1'
+	Get 
+	http://snowmoutain-agiledc.rhcloud.com/Users/1/DonateHistorys
 
-Api Response
+###Api Response
 	
 	[	
 		{
@@ -134,19 +166,24 @@ Api Response
 		}
 	]
 
+###備註
+	
+	備註
+
 ---
 
-## 使用者貢獻值記錄
+## Get: /Users/{userId}/ContributeHistorys
 
-說明
+###說明
 
 	查詢使用者貢獻值
 	
-Api Request
+###Api Request
 
-	Get http://snowmoutain-agiledc.rhcloud.com/UserInfo?userId='1'
+	Get 
+	http://snowmoutain-agiledc.rhcloud.com/Users/1/ContributeHistorys
 
-Api Response
+###Api Response
 
 	{
 		contributeValueTotal: 1000,
@@ -160,7 +197,10 @@ Api Response
 		] 
 	
 	}
+
+###備註
 	
+	備註
 
 
 
