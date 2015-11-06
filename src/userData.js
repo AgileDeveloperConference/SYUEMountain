@@ -7,61 +7,71 @@ var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');
 var User = require('./model/userModel');
 
-// // DB stuff
-// var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
-//                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
-// var mongodbUri = 'mongodb://tony:tony123@ds045464.mongolab.com:45464/agilemount';
-// var mongooseUri = uriUtil.formatMongoose(mongodbUri);
-
-// // Connect to the db
-// mongoose.connect(mongooseUri, options);
-// var conn = mongoose.connection;             
- 
-// conn.on('error', console.error.bind(console, 'connection error:'));
-// var User = mongoose.model('User',{
-// 	fbUID : String,
-// 	name : String,
-// 	email : String
-// });
-
-function saveUser(fbUID,name,email,dtd){
-	    User.findOne({ fbUID: fbUID }, function(err, user) {
+function saveUser(fbUID, name, email, dtd){
+	User.findOne({ fbUID: fbUID }, function(err, user) {
 	    	var res = {};
 			if(err) { console.log(err); }
 			// console.log(user);
-			if (!err) {
-				res = {
-					errorMsg:"Wrong!",
-					succeed:false
-				};
-				dtd.resolve(res);
-			} else {
-				console.log("start storing...");
-				var user = new User({
-					fbUID: fbUID,
-					name: name,
-					email: email,
-					created: Date.now()
-				});
+			if (!err ) {
 
-				user.save(function(err) {
-					if(err) {
-						console.log(err);
-					} else {
-						console.log("saving user ...");
-						res = {
-							id:fbUID,
-							name:name,
-							email:email,
-							succeed:true
+				if(user==null){
+					// user not exist , sign up 
+					console.log("user not exist");
+
+					console.log("start storing...");
+					var user = new User({
+						fbUID: fbUID,
+						name: name,
+						email: email,
+						//created: Date.now(),
+						contributeValue : 0,
+						roadId : 0,
+						DateStart:0,
+						DateEnd :0,
+						isSucess:false,
+						created : Date.now()
+
+					});
+
+					user.save(function(err) {
+						if(err) {
+							console.log(err);
+						} else {
+							console.log("saving user ...");
+							res = {
+								id:fbUID,
+								name:name,
+								email:email,
+								succeed:true
+							};
+							dtd.resolve(res);
 						};
-						dtd.resolve(res);
+					});
+
+				}else{
+					// user has exist 
+					res = {
+						errorMsg:"Already exist!",
+						succeed:false
 					};
-				});
-			};
+					dtd.resolve(res);
+			 
+				}
+			}
 		});
 }	
+function setPath(fbUID, roadId){
+	User.findOne({	fbUID : fbUID}, function(err, user){
+			// catch error
+			if(err) { console.log(err); }			
+			else{
+				// not error occur
+				console.log("find fbUid!");
 
+			}
+
+	});
+}
 function getFBUID(accessToken){
 	var deferred = new promise.Deferred();
 	FB.api('me', { fields: ['id', 'name', 'email'], access_token: accessToken }, function (res) {

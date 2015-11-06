@@ -46,7 +46,7 @@ Api Request
 	Post http://snowmoutain-agiledc.rhcloud.com/path	
 	{
 	   "roadId" : "1",
-	   "userId" : "1" //拿fbUid	
+	   "userId" : "1" //拿fbUid
 	}
 
 user	
