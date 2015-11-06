@@ -69,8 +69,13 @@
 	]
 
 ###備註
-
-	備註
+	
+	roadId = {
+		"北宜公路":"1",
+		"濱海公路":"2",
+		"北橫公路":"3",
+		"雪山隧道":"4"
+	}
 	
 ---
 
@@ -83,7 +88,8 @@
 
 	Post http://snowmoutain-agiledc.rhcloud.com/Users/1/Paths	
 	{
-	   "roadId" : "1"
+		"fbUID": "10203564158293237",
+		"roadId" : "1"
 	}
 
 ###Api Response

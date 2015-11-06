@@ -2,6 +2,7 @@
 
 module.exports = function(){
 	return {	
+		roadId: "",
 		title : "",
 		name : "",
 		spendTime : "",

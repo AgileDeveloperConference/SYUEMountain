@@ -44,4 +44,20 @@ router.post('/Users', function (req, res){
 	})
 });
 
+router.post('/Paths', function (req, res){
+	//For Test -> Jack's fbUID = 10203564158293237;
+	var fbUID = req.body.fbUID;
+    var roadId = req.body.roadId;
+
+	var result = {};
+	var data1 = userData.setUserPath(fbUID, roadId);
+	
+	promise.when(data1).done(function(){
+		var arg = arguments;
+				argCount = arg.length;
+		// console.log(arg[0]);
+		res.json(arg[0]);
+	})
+});
+
 module.exports = router;

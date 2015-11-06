@@ -43,7 +43,7 @@ function getData(){
 		});
 
 		var avgSpeed = tem_avg/count;
-
+		model.roadId = "4";
 		model.trafficStatus = getTrafficStatusBySpeed(avgSpeed);
 		model.contributeValue = contributeCalcu(avgSpeed);
 		model.spendTime = Math.round( distance/(avgSpeed/60));
