@@ -60,7 +60,7 @@ function saveUser(fbUID, name, email, dtd){
 		});
 }	
 function setPath(fbUID, roadId){
-		var deferred = new promise.Deferred();
+	var deferred = new promise.Deferred();
 	User.findOne({	fbUID : fbUID}, function(err, user){
 			var res = {};
 			// catch error
@@ -72,13 +72,23 @@ function setPath(fbUID, roadId){
 				};
 				deferred.resolve(res);
 			}			
-			else{
-				// not error occur
-				console.log("find fbUid!");
-				res = {
-				    "resultCode": "S01",
-				    "resultmsg" : "Suceess"
-				};
+			else{	
+				user.roadId = roadId;
+				user.DateStart =Date.now();
+				user.save(function(err){
+					if(err){					
+						res = {
+					    "resultCode": "E01",
+					    "resultmsg" : err
+						};
+				  }else{
+						console.log("Success set path");
+						res = {
+					    "resultCode": "S01",
+					    "resultmsg" : "Suceess"
+						};
+					}
+				})
 				deferred.resolve(res);
 			}
 	});
@@ -120,11 +130,32 @@ function getContribute(fbUID){
 	});
 	return deferred;
 }
+
+function deleteUser(userId){
+
+	User.remove({fbUID:userId},function(err,user){
+		if(err){
+			console.log(err);
+ 		}else{
+			console.log('Success delete User');
+    }
+  });
+
+
+}
  
 module.exports = {
 	getFBUID:function(accessToken){
 		return getFBUID(accessToken);
 	},
+	saveUser:function(userId,name,email){
+		var deferred = new promise.Deferred();
+		saveUser(userId,name,email,deferred);
+		return deferred;
+  },
+	deleteUser:function(userId){
+		deleteUser(userId);
+  },
 	setUserPath: function(fbUID, roadId){
 		return setPath(fbUID, roadId);
 	},
