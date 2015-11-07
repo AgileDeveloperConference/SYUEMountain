@@ -123,10 +123,39 @@
 ###Api Request
 
 	Post  
-	http://snowmoutain-agiledc.rhcloud.com/Users/{userId}/Paths/{roadId}
+	http://snowmoutain-agiledc.rhcloud.com/Users/{fbUID}/Paths/{roadId}
 	
 	{
 		"success" : true	,
+		"contributeValue" : 80
+	}
+
+###Api Response
+
+	{
+		"resultCode": S01,
+		"resultmsg" : "Suceess"
+	}
+
+###備註
+
+	S01:Success
+	E01:Fail
+
+---
+##POST: /Users/{fbUID}/Donate
+
+###說明
+	
+	新增使用者捐獻
+	
+###Api Request
+
+	Post  
+	http://snowmoutain-agiledc.rhcloud.com/Users/{fbUID}/Donate
+	
+	{
+		"receiver" : "紅十字"	,
 		"contributeValue" : 80
 	}
 
@@ -148,7 +177,7 @@
 
 ###說明
 
-	取得使用者捐記錄
+	查詢使用者捐記錄
 	
 ###Api Request
 
