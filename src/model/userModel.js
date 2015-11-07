@@ -16,9 +16,9 @@ module.exports = mongoose.model('User',new Schema({
 		name : String,
 		email : String,
 		contributeValue : Number,
-		roadId : String,
+		roadId : Number,
 		DateStart:Number,
 		DateEnd :Number,
 		isSuccess:Boolean,
-		created : Number
+		createTime : Number
 }));

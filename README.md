@@ -17,7 +17,7 @@
 	
 	Success 
 	{
-		"userId": "628531240583653",
+		"fbUID": "628531240583653",
 		"name": "郭君君",
 		"resultCode": S01,
 		"resultmsg" : "Suceess"
@@ -79,7 +79,7 @@
 	
 ---
 
-##POST: /Users/{userId}/Paths
+##POST: /Users/{fbUID}/Paths
 ###說明
 	
 	使用者設定所選擇的路線
@@ -107,14 +107,14 @@
 
 ###User(Table)	
 
-| userId        | roadId        | contributeValue  | DateStart | DateEnd | isSucess |
-| ------------- |:-------------:| ----------------:| ---------:| -------:| --------:|
-|       1       |       1       |                  | 20150101  |         |          |
+| fbUID           | name  | contributeValue  | roadId  | DateStart   | DateEnd      | isSucess | createTime    |
+| :-------------: |:-----:|:----------------:| :------:| -----------:| :-----------:| :-------:| :------------:|
+| 628531240583652 | 陳湯尼 |     50           |  1      | 1446880480  | 1446885080   |  true    | 1446884080    |
 
 
 ---
 
-##POST: /Users/{userId}/Paths/{roadId}
+##POST: /Users/{fbUID}/Paths/{roadId}
 
 ###說明
 	
@@ -142,15 +142,9 @@
 	S01:Success
 	E01:Fail
 
-###User(Table)
-
-| userId        | roadId        | contributeValue  | DateStart | DateEnd | isSucess |
-| ------------- |:-------------:| ----------------:| ---------:| -------:| --------:|
-|       1       |       1       |       80         | 20150101  | 20150102|   true   |
-
 ---
 
-##Get : /Users/{userId}/DonateHistorys
+##Get : /Users/{fbUID}/DonateHistorys
 
 ###說明
 
@@ -165,7 +159,7 @@
 	
 	[	
 		{
-			"userId" : "1",
+			"fbUID" : "1",
 			"date" : 20150101,
 			"receiver" : "紅十字",
 			"contributeValue" : 100
@@ -178,7 +172,7 @@
 
 ---
 
-## Get: /Users/{userId}/ContributeHistorys
+## Get: /Users/{fbUID}/ContributeHistorys
 
 ###說明
 

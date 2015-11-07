@@ -29,7 +29,7 @@ function saveUser(fbUID, name, email, dtd){
 						DateStart:0,
 						DateEnd :0,
 						isSuccess:false,
-						created : Date.now()
+						createTime : Date.now()
 
 					});
 
@@ -94,7 +94,7 @@ function getFBUID(accessToken){
 	});
 	return deferred;
 }
-
+function 
 module.exports = {
 	getFBUID:function(accessToken){
 		return getFBUID(accessToken);
