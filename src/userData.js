@@ -94,7 +94,7 @@ function getFBUID(accessToken){
 	});
 	return deferred;
 }
-function 
+ 
 module.exports = {
 	getFBUID:function(accessToken){
 		return getFBUID(accessToken);
