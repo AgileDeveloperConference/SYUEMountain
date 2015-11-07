@@ -12,7 +12,6 @@ describe("Get Remote data and parse to model",function(){
 		this.timeout(20000);
 		var getData = freewayData.getSnowData();
 		getData.done(function(data){
-			console.log(data);
 			done();
 		})
 	});

@@ -25,7 +25,7 @@ function getData(title){
 		if(!data)
 			return;
 		model = {};
-		model.roadId = mapRoadByTitle(title);
+		model.roadId = highwayInfo.roadId;
 		model.title = title;
 		model.name = highwayInfo.name;
 		model.spendTime =Math.round((data.resourceSets[0].resources[0].travelDuration)/60);
@@ -55,15 +55,6 @@ function getTrafficStatusBySpeed(speed){
 	if(speed < 30)
 		return "R";
 
-}
-
-function mapRoadByTitle(title){
-	var titleTable = {
-		"北宜公路":"1",
-		"濱海公路":"2",
-		"北橫公路":"3"
-	}
-	return titleTable[title];
 }
 
 
