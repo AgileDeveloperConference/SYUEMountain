@@ -41,8 +41,8 @@ function saveUser(fbUID, name, email, dtd){
 							res = {
 								fbUID:fbUID,
 								name:name,
-								email:email,
-								succeed:true
+								resultCode:"S01",
+								resultmsg:"Suceess"
 							};
 							dtd.resolve(res);
 						};
@@ -51,8 +51,8 @@ function saveUser(fbUID, name, email, dtd){
 				}else{
 					// user has exist 
 					res = {
-						errorMsg:"Already exist!",
-						succeed:false
+						resultCode:"E01",
+						resultmsg:"account already exist"
 					};
 					dtd.resolve(res);
 			 
