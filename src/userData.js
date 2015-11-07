@@ -89,7 +89,34 @@ function getFBUID(accessToken){
 	var deferred = new promise.Deferred();
 	FB.api('me', { fields: ['id', 'name', 'email'], access_token: accessToken }, function (res) {
 	    	saveUser(res.id,res.name,res.email,deferred);
-			console.log(res);
+			// console.log(res);
+	});
+	return deferred;
+}
+
+function getContribute(fbUID){
+	var deferred = new promise.Deferred();
+	User.findOne({fbUID : fbUID}, function(err, user){
+			var res = {};
+			// catch error
+			if(err) { 
+				console.log(err); 
+				res = {
+				    "resultCode": "E01",
+				    "resultmsg" : err
+				};
+				deferred.resolve(res);
+			}			
+			else{
+				// not error occur
+				console.log("find fbUid!");
+				console.log(user);
+				res = {
+				    "resultCode": "S01",
+				    "resultmsg" : "Suceess"
+				};
+				deferred.resolve(res);
+			}
 	});
 	return deferred;
 }
@@ -100,5 +127,8 @@ module.exports = {
 	},
 	setUserPath: function(fbUID, roadId){
 		return setPath(fbUID, roadId);
+	},
+	getUserContributeHistorys: function(fbUID){
+		return getContribute(fbUID);
 	}
 };

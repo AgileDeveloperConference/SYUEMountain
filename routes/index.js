@@ -60,4 +60,18 @@ router.post('/Paths', function (req, res){
 	})
 });
 
+router.get('/Users/:fbUID/ContributeHistorys', function(req, res) {
+	var fbUID = req.params.fbUID;
+	var result = {};
+	var data1 = userData.getUserContributeHistorys(fbUID);
+
+	promise.when(data1).done(function(){
+		var arg = arguments;
+				argCount = arg.length;
+		// console.log(arg[0]);
+		res.json(arg[0]);
+	})
+  // res.json(fbUID);
+});
+
 module.exports = router;
