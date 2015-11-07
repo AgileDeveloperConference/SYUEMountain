@@ -23,7 +23,6 @@ function saveUser(fbUID, name, email, dtd){
 						fbUID: fbUID,
 						name: name,
 						email: email,
-						//created: Date.now(),
 						contributeValue : 0,
 						roadId : 0,
 						DateStart:0,

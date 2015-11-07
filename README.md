@@ -105,7 +105,7 @@
 	E01:Fail
 
 
-###User(Table)	
+###User(Collection)	
 
 | fbUID           | name  | contributeValue  | roadId  | DateStart   | DateEnd      | isSucess | createTime    |
 | :-------------: |:-----:|:----------------:| :------:| -----------:| :-----------:| :-------:| :------------:|
@@ -123,7 +123,7 @@
 ###Api Request
 
 	Post  
-	http://snowmoutain-agiledc.rhcloud.com/Users/{userId}/Paths/{roadId}
+	http://snowmoutain-agiledc.rhcloud.com/Users/{fbUID}/Paths/{roadId}
 	
 	{
 		"success" : true	,
@@ -143,12 +143,47 @@
 	E01:Fail
 
 ---
+##POST: /Users/{fbUID}/Donate
+
+###說明
+	
+	新增使用者捐獻
+	
+###Api Request
+
+	Post  
+	http://snowmoutain-agiledc.rhcloud.com/Users/{fbUID}/Donate
+	
+	{
+		"charityID" : "1"	,
+		"contributeValue" : 80
+	}
+
+###Api Response
+
+	{
+		"resultCode": S01,
+		"resultmsg" : "Suceess"
+	}
+
+###備註
+
+	S01:Success
+	E01:Fail
+	
+	慈善機構ID對照表
+		ID	機構
+		1	紅十字會
+		2	伊甸園
+		3	陽光
+		
+---
 
 ##Get : /Users/{fbUID}/DonateHistorys
 
 ###說明
 
-	取得使用者捐記錄
+	查詢使用者捐記錄
 	
 ###Api Request
 
@@ -161,7 +196,7 @@
 		{
 			"fbUID" : "1",
 			"date" : 20150101,
-			"receiver" : "紅十字",
+			"charityID" : "1",
 			"contributeValue" : 100
 		}
 	]
@@ -169,6 +204,12 @@
 ###備註
 	
 	備註
+	
+	慈善機構ID對照表
+		ID	機構
+		1	紅十字會
+		2	伊甸園
+		3	陽光
 
 ---
 
