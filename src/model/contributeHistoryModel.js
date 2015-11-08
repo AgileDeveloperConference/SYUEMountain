@@ -2,13 +2,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var uriUtil = require('mongodb-uri');
-
+var config = require('../../config');
 // DB stuff
 var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
-var mongodbUri = 'mongodb://tony:tony123@ds045464.mongolab.com:45464/agilemount';
+var mongodbUri = config.dbURL;
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
-
 
 
 if(mongoose.connection.readyState == 0){

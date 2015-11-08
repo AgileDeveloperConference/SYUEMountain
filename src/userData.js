@@ -1,7 +1,5 @@
 'use strict';
 
-var http = require("http");
-var FB = require('fb');
 var promise = require('jquery-deferred');
 var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');
