@@ -7,6 +7,7 @@ var freeWayData = require('../src/freewayData');
 var highWayData = require('../src/highwayData');
 var contribute = require('../src/contribute');
 var userData = require('../src/userData');
+var contributeHistoryData = require('../src/contributeHistoryData');
 /* GET home page. */
 
 router.get('/', function(req, res) {
@@ -47,31 +48,64 @@ router.post('/Users', function (req, res){
 router.post('/Users/:userId/Paths', function (req, res){
 	//For Test -> Jack's fbUID = 10203564158293237;
 	var fbUID = req.params.userId;
-  var roadId = req.body.roadId;
-
+  	var roadId = req.body.roadId;
 	var result = {};
-	var data1 = userData.setUserPath(fbUID, roadId);
-	
-	promise.when(data1).done(function(){
-		var arg = arguments;
-				argCount = arg.length;
-		// console.log(arg[0]);
-		res.json(arg[0]);
-	})
+	console.log(roadId);
+	if(roadId === null || roadId === undefined ){
+		result = {
+		    "resultCode": "E01",
+		    "resultmsg" : "Error Params"
+		};	
+		res.json(result);
+	}else{
+		var data1 = userData.setPath(fbUID, roadId);
+		promise.when(data1).done(function(){
+			var arg = arguments;
+			res.json(arg[0]);
+		})		
+	}
 });
 
-router.get('/Users/:fbUID/ContributeHistorys', function(req, res) {
-	var fbUID = req.params.fbUID;
+router.post('/Users/:userId/Paths/:roadId', function (req, res){
+	var fbUID = req.params.userId;
+  	var roadId = req.params.roadId;
+  	var contributeValue = req.body.contributeValue;
 	var result = {};
-	var data1 = userData.getUserContributeHistorys(fbUID);
+	if(contributeValue === null || contributeValue=== undefined ){
+		result = {
+		    "resultCode": "E01",
+		    "resultmsg" : "Error Params"
+		};	
+		res.json(result);
+	}else{
+  		var dateStart = userData.getStartTime(fbUID);
+	 	promise.when(dateStart).done(function(){
+			var arg = arguments;
+			if(arg[0].resultCode === "S01"){
+				var data1 = contributeHistoryData.saveContributeHistory(fbUID, contributeValue, roadId, arg[0].DateStart);
+				promise.when(data1).done(function(){
+					var arg = arguments;
+					argCount = arg.length;
+					res.json(arg[0]);
+				});				
+			}else{
+				res.json(arg[0]);
+			}
+		}); 		
+	}
+});
+
+router.get('/Users/:userId/ContributeHistorys', function(req, res) {
+	var fbUID = req.params.userId;
+	var result = {};
+	var data1 = contributeHistoryData.getContributeHistorys(fbUID);
 
 	promise.when(data1).done(function(){
 		var arg = arguments;
 				argCount = arg.length;
 		// console.log(arg[0]);
-		res.json(arg[0]);
+		res.json(arg);
 	})
-  // res.json(fbUID);
 });
 
 module.exports = router;

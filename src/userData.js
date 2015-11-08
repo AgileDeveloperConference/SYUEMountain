@@ -58,8 +58,47 @@ function saveUser(fbUID, name, email, dtd){
 				}
 			}
 		});
-}	
+}
+
 function setPath(fbUID, roadId){
+	var deferred = new promise.Deferred();
+
+	User.findOne({	fbUID : fbUID}, function(err, user){
+			var res = {};
+			// catch error
+			if(err) { 
+				console.log(err); 
+				res = {
+				    "resultCode": "E01",
+				    "resultmsg" : err
+				};
+				deferred.resolve(res);
+			}			
+			else{
+				user.roadId = roadId;
+				user.DateStart =Date.now();
+				user.save(function(err){
+					if(err){					
+						res = {
+						    "resultCode": "E01",
+						    "resultmsg" : err
+						};
+					}else{
+						console.log("Success set path");
+						res = {
+						    "resultCode": "S01",
+						    "resultmsg" : "Suceess"
+						};
+					}
+					deferred.resolve(res);
+				})
+
+			}
+	});
+	return deferred;
+}
+
+function getStartTime(fbUID){
 	var deferred = new promise.Deferred();
 	User.findOne({	fbUID : fbUID}, function(err, user){
 			var res = {};
@@ -73,26 +112,22 @@ function setPath(fbUID, roadId){
 				deferred.resolve(res);
 			}			
 			else{	
-				user.roadId = roadId;
-				user.DateStart =Date.now();
-				user.save(function(err){
-					if(err){					
-						res = {
+				if(err){					
+					res = {
 					    "resultCode": "E01",
 					    "resultmsg" : err
-						};
-				  }else{
-						console.log("Success set path");
-						res = {
-					    "resultCode": "S01",
-					    "resultmsg" : "Suceess"
-						};
-					}
-				})
+					};
+				}else{
+					res = {
+						"resultCode": "S01",
+						"resultmsg" : "Suceess",
+				    	"DateStart": user.DateStart
+					};
+				}
 				deferred.resolve(res);
 			}
 	});
-		return deferred;
+	return deferred;
 }
 
 function getFBUID(accessToken){
@@ -104,35 +139,7 @@ function getFBUID(accessToken){
 	return deferred;
 }
 
-function getContribute(fbUID){
-	var deferred = new promise.Deferred();
-	User.findOne({fbUID : fbUID}, function(err, user){
-			var res = {};
-			// catch error
-			if(err) { 
-				console.log(err); 
-				res = {
-				    "resultCode": "E01",
-				    "resultmsg" : err
-				};
-				deferred.resolve(res);
-			}			
-			else{
-				// not error occur
-				console.log("find fbUid!");
-				console.log(user);
-				res = {
-				    "resultCode": "S01",
-				    "resultmsg" : "Suceess"
-				};
-				deferred.resolve(res);
-			}
-	});
-	return deferred;
-}
-
 function deleteUser(userId){
-
 	User.remove({fbUID:userId},function(err,user){
 		if(err){
 			console.log(err);
@@ -140,8 +147,6 @@ function deleteUser(userId){
 			console.log('Success delete User');
     }
   });
-
-
 }
  
 module.exports = {
@@ -152,14 +157,14 @@ module.exports = {
 		var deferred = new promise.Deferred();
 		saveUser(userId,name,email,deferred);
 		return deferred;
-  },
+  	},
 	deleteUser:function(userId){
-		deleteUser(userId);
-  },
-	setUserPath: function(fbUID, roadId){
+			deleteUser(userId);
+  	},
+	setPath: function(fbUID, roadId){
 		return setPath(fbUID, roadId);
 	},
-	getUserContributeHistorys: function(fbUID){
-		return getContribute(fbUID);
+	getStartTime:function(fbUID){
+		return getStartTime(fbUID);
 	}
 };
