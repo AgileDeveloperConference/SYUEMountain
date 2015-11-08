@@ -60,13 +60,23 @@ function deleteContributeHistory(userId){
 function getContributeHistorys(fbUID){
 	var deferred = new promise.Deferred();
 	contributeHistoryModel.find({fbUID:fbUID},function(err,user){
-	    var allContributeValue = [];
+		var result = {};
+	    var infoAry = [];
 	    var length = user.length;
+	    var sum = 0;
 	    user.map(function(e,i) {
-	    	allContributeValue.push(e.contributeValue);
-	    	
+	    	var info = {};
+	    	if(e.contributeValue === null || e.contributeValue === undefined ) return;
+	    	info.contributeValue = e.contributeValue;
+	    	var date = new Date(e.DateEnd)
+	    	info.recordDate = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getMonth();
+			info.roadId = e.roadId;
+	    	infoAry.push(info);
+	    	sum = e.contributeValue + sum;
+	    	result.totalContribute = sum;
+	    	result.infoAry = infoAry;
 			if(i == length-1){
-				deferred.resolve(allContributeValue);
+				deferred.resolve(result);
 			}
 	    });
 	});
