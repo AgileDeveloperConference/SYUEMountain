@@ -86,9 +86,8 @@
 
 ###Api Request
 
-	Post http://snowmoutain-agiledc.rhcloud.com/Users/1/Paths	
+	Post http://snowmoutain-agiledc.rhcloud.com/Users/10203564158293237/Paths	
 	{
-		"fbUID": "10203564158293237",
 		"roadId" : "1"
 	}
 
