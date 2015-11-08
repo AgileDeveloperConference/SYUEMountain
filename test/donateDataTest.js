@@ -44,12 +44,16 @@ describe("Query donate record",function(){
 			});
 		});
 
-		// it("Compare the queryData is right or not",function(done){
-		// 	var dataPromise = donateData.queryData(5678);
-		// 	dataPromise.done(function(data){
-		// 		//delete data just store
-		// 		console.log(data)
-		// 		done(); 
-		// 	});
-		// });
+		it("Compare the queryData is right or not",function(done){
+			var dataPromise = donateData.queryData(5678);
+			dataPromise.done(function(data){
+				//compare data and testdata
+				
+				//delete data just store
+				donateData.deleteTestData(5678);
+
+				done(); 
+
+			});
+		});
 });
