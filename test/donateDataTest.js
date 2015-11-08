@@ -23,3 +23,33 @@ describe("Save donate record",function(){
 			});
 		});
 });
+describe("Query donate record",function(){
+
+		var data=[
+			{"fbUID":"5678","charityID":1,"contributeValue":50},
+			{"fbUID":"5678","charityID":2,"contributeValue":100}
+		];
+
+		it("Save data 1 donate record in mongodb",function(done){
+			var dataPromise = donateData.saveData(data[0].fbUID,data[0].charityID,data[0].contributeValue);
+			dataPromise.done(function(data){
+				done(); 
+			});
+		});
+
+		it("Save data 2 donate record in mongodb",function(done){
+			var dataPromise = donateData.saveData(data[1].fbUID,data[1].charityID,data[1].contributeValue);
+			dataPromise.done(function(data){
+				done(); 
+			});
+		});
+
+		// it("Compare the queryData is right or not",function(done){
+		// 	var dataPromise = donateData.queryData(5678);
+		// 	dataPromise.done(function(data){
+		// 		//delete data just store
+		// 		console.log(data)
+		// 		done(); 
+		// 	});
+		// });
+});

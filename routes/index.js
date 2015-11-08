@@ -114,7 +114,27 @@ router.post('/Users/:fbUID/Donate', function(req, res) {
 		promise.when(donate).done(function(){
 			var arg = arguments,
 				argCount = arg.length;
-			res.json(arg);
+			res.json(arg[0]);
+		});
+	}
+});
+router.get('/Users/:fbUID/DonateHistorys', function(req, res){
+	var fbUID = req.params.fbUID;
+	var result = {};
+	//prevent stupid input
+	if(fbUID === null || fbUID === undefined){
+		result = {
+		    "resultCode": "E01",
+		    "resultmsg" : "Error Params"
+		};
+		res.json(result);	
+	}else{
+		var donate = donateData.queryData(fbUID);
+
+		promise.when(donate).done(function(){
+			var arg = arguments,
+				argCount = arg.length;
+			res.json(arg[0]);
 		});
 	}
 });
