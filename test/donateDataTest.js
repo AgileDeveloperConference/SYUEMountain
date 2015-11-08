@@ -15,8 +15,11 @@ describe("Save donate record",function(){
 		it("Save donate record in mongodb",function(done){
 			var dataPromise = donateData.saveData(fbUID,charityID,contributeValue);
 			dataPromise.done(function(data){
-				//success
+				//delete data just store
+				donateData.deleteTestData(fbUID);
+
 				done(); 
+
 			});
 		});
 });

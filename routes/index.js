@@ -8,6 +8,7 @@ var highWayData = require('../src/highwayData');
 var contribute = require('../src/contribute');
 var userData = require('../src/userData');
 var contributeHistoryData = require('../src/contributeHistoryData');
+var donateData = require('../src/donateData');
 /* GET home page. */
 
 router.get('/', function(req, res) {
@@ -94,7 +95,29 @@ router.post('/Users/:userId/Paths/:roadId', function (req, res){
 		}); 		
 	}
 });
+router.post('/Users/:fbUID/Donate', function(req, res) {
+	var fbUID = req.params.fbUID;
+	var charityID = req.body.charityID;
+	var contributeValue = req.body.contributeValue;
+	var result = {};
 
+	// prevent stupid input
+	if(fbUID === null || fbUID === undefined){
+		result = {
+		    "resultCode": "E01",
+		    "resultmsg" : "Error Params"
+		};
+		res.json(result);	
+	}else{
+		var donate = donateData.saveData(fbUID,charityID,contributeValue);
+
+		promise.when(donate).done(function(){
+			var arg = arguments,
+				argCount = arg.length;
+			res.json(arg);
+		});
+	}
+});
 router.get('/Users/:userId/ContributeHistorys', function(req, res) {
 	var fbUID = req.params.userId;
 	var result = {};
@@ -107,5 +130,6 @@ router.get('/Users/:userId/ContributeHistorys', function(req, res) {
 		res.json(arg);
 	})
 });
+
 
 module.exports = router;

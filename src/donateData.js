@@ -27,14 +27,25 @@ function saveData(fbUID, charityID, contributeValue, deferred){
 			deferred.resolve(res);
 		}
 	});
-
-
-
+}
+function deleteTestData(fbUID){
+		Donate.remove({fbUID : fbUID},function(err){
+		if(err){
+			console.log(err);
+		}else if(!err){
+			//delete!
+			console.log("test donate data has delete");
+		}
+	});
 }
 module.exports = {
 	saveData : function (fbUID, charityID, contributeValue){
 		var deferred = new promise.Deferred();
 		saveData(fbUID, charityID, contributeValue, deferred);
 		return deferred;
+	},
+	deleteTestData : function (fbUID){
+		deleteTestData(fbUID);
 	}
+
 };
