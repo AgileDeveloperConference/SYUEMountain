@@ -134,7 +134,6 @@ function getFBUID(accessToken){
 	var deferred = new promise.Deferred();
 	FB.api('me', { fields: ['id', 'name', 'email'], access_token: accessToken }, function (res) {
 	    	saveUser(res.id,res.name,res.email,deferred);
-			// console.log(res);
 	});
 	return deferred;
 }

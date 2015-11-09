@@ -46,9 +46,9 @@ router.post('/Users', function (req, res){
 	})
 });
 
-router.post('/Users/:userId/Paths', function (req, res){
+router.post('/Users/:fbUID/Paths', function (req, res){
 	//For Test -> Jack's fbUID = 10203564158293237;
-	var fbUID = req.params.userId;
+	var fbUID = req.params.fbUID;
   	var roadId = req.body.roadId;
 	var result = {};
 	console.log(roadId);
@@ -138,8 +138,8 @@ router.get('/Users/:fbUID/DonateHistorys', function(req, res){
 		});
 	}
 });
-router.get('/Users/:userId/ContributeHistorys', function(req, res) {
-	var fbUID = req.params.userId;
+router.get('/Users/:fbUID/ContributeHistorys', function(req, res) {
+	var fbUID = req.params.fbUID;
 	var result = {};
 	var data1 = contributeHistoryData.getContributeHistorys(fbUID);
 
