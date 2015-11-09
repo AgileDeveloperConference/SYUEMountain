@@ -22,7 +22,7 @@ function saveContributeHistory(userId,contributeValue,roadId,dateStart){
   			console.log(user);
 			res = {
 				resultCode:"S01",
-				resultmsg:"Suceess and Exit!"
+				resultmsg:"Suceess"
 			};
 			deferred.resolve(res);
   		}else{

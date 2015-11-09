@@ -66,9 +66,8 @@ router.post('/Users/:fbUID/Paths', function (req, res){
 		})		
 	}
 });
-
-router.post('/Users/:userId/Paths/:roadId', function (req, res){
-	var fbUID = req.params.userId;
+router.post('/Users/:fbUID/Paths/:roadId', function (req, res){
+	var fbUID = req.params.fbUID;
   	var roadId = req.params.roadId;
   	var contributeValue = req.body.contributeValue;
 	var result = {};
