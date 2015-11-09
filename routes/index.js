@@ -8,6 +8,7 @@ var highWayData = require('../src/highwayData');
 var contribute = require('../src/contribute');
 var userData = require('../src/userData');
 var contributeHistoryData = require('../src/contributeHistoryData');
+var donateData = require('../src/donateData');
 /* GET home page. */
 
 router.get('/', function(req, res) {
@@ -45,9 +46,9 @@ router.post('/Users', function (req, res){
 	})
 });
 
-router.post('/Users/:userId/Paths', function (req, res){
+router.post('/Users/:fbUID/Paths', function (req, res){
 	//For Test -> Jack's fbUID = 10203564158293237;
-	var fbUID = req.params.userId;
+	var fbUID = req.params.fbUID;
   	var roadId = req.body.roadId;
 	var result = {};
 	console.log(roadId);
@@ -65,9 +66,8 @@ router.post('/Users/:userId/Paths', function (req, res){
 		})		
 	}
 });
-
-router.post('/Users/:userId/Paths/:roadId', function (req, res){
-	var fbUID = req.params.userId;
+router.post('/Users/:fbUID/Paths/:roadId', function (req, res){
+	var fbUID = req.params.fbUID;
   	var roadId = req.params.roadId;
   	var contributeValue = req.body.contributeValue;
 	var result = {};
@@ -94,9 +94,51 @@ router.post('/Users/:userId/Paths/:roadId', function (req, res){
 		}); 		
 	}
 });
+router.post('/Users/:fbUID/Donate', function(req, res) {
+	var fbUID = req.params.fbUID;
+	var charityID = req.body.charityID;
+	var contributeValue = req.body.contributeValue;
+	var result = {};
 
-router.get('/Users/:userId/ContributeHistorys', function(req, res) {
-	var fbUID = req.params.userId;
+	// prevent stupid input
+	if(fbUID === null || fbUID === undefined){
+		result = {
+		    "resultCode": "E01",
+		    "resultmsg" : "Error Params"
+		};
+		res.json(result);	
+	}else{
+		var donate = donateData.saveData(fbUID,charityID,contributeValue);
+
+		promise.when(donate).done(function(){
+			var arg = arguments,
+				argCount = arg.length;
+			res.json(arg[0]);
+		});
+	}
+});
+router.get('/Users/:fbUID/DonateHistorys', function(req, res){
+	var fbUID = req.params.fbUID;
+	var result = {};
+	//prevent stupid input
+	if(fbUID === null || fbUID === undefined){
+		result = {
+		    "resultCode": "E01",
+		    "resultmsg" : "Error Params"
+		};
+		res.json(result);	
+	}else{
+		var donate = donateData.queryData(fbUID);
+
+		promise.when(donate).done(function(){
+			var arg = arguments,
+				argCount = arg.length;
+			res.json(arg[0]);
+		});
+	}
+});
+router.get('/Users/:fbUID/ContributeHistorys', function(req, res) {
+	var fbUID = req.params.fbUID;
 	var result = {};
 	var data1 = contributeHistoryData.getContributeHistorys(fbUID);
 
@@ -107,5 +149,6 @@ router.get('/Users/:userId/ContributeHistorys', function(req, res) {
 		res.json(arg);
 	})
 });
+
 
 module.exports = router;

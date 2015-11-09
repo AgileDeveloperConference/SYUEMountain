@@ -24,17 +24,43 @@ function saveData(fbUID, charityID, contributeValue, deferred){
 				"resultCode": "S01",
 				"resultmsg" : "Suceess"
 			};
-			deferred.resolve(res);
+		deferred.resolve(res);
 		}
 	});
-
-
-
+}
+function deleteTestData(fbUID){
+	Donate.remove({fbUID : fbUID},function(err){
+	if(err){
+		console.log(err);
+	}else if(!err){
+		//delete!
+		console.log("test donate data has delete");
+	}
+	});
+}
+function queryData(fbUID, deferred){
+	var res = {};
+	Donate.find({fbUID:fbUID},function(err,data){
+		if (err) {console.log(err)}
+		else if(!err){
+			res = data ; 
+		}
+		deferred.resolve(res);
+	});
 }
 module.exports = {
 	saveData : function (fbUID, charityID, contributeValue){
 		var deferred = new promise.Deferred();
 		saveData(fbUID, charityID, contributeValue, deferred);
 		return deferred;
+	},
+	deleteTestData : function (fbUID){
+		deleteTestData(fbUID);
+	},
+	queryData : function (fbUID){
+		var deferred = new promise.Deferred();
+		queryData(fbUID, deferred);
+		return deferred;
 	}
+
 };
