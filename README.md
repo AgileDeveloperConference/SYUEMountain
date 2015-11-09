@@ -1,4 +1,6 @@
-#SnowMoutain RESTFul Api 
+#SnowMoutain RESTFul Api
+
+##Content-type:application/x-www-form-urlencoded 
 ---
 ## Post: /Users
 ###說明
