@@ -18,21 +18,6 @@ app.locals.ENV_DEVELOPMENT = env == 'development';
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-//DB area
-// var MongoClient = require('mongodb').MongoClient
-//         ,assert = require('assert');
-
-// // Connection URL 
-// var url = 'mongodb://localhost:27017/data';
-
-// MongoClient.connect(url, function(err, db) {
-//   assert.equal(null, err);
-//   console.log("Connected correctly to server");
-//   console.log("已經成功連線ＤＢ");
-//   db.close();
-// });
-
-//End DB area
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
@@ -44,12 +29,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/PathInfos',routes);
-app.use('/Users',routes);
-app.use('/Paths',routes);
-app.use('/Users/:userId/Paths',routes);
-app.use('/Users/:userId/ContributeHistorys',routes);
-
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
