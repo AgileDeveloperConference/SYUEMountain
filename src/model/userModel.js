@@ -15,7 +15,6 @@ if(mongoose.connection.readyState == 0){
   mongoose.connect(mongooseUri, options);
 }
 
-console.log(mongoose.connection.readyState);
 module.exports = mongoose.model('User',new Schema({
 		fbUID : String,
 		name : String,

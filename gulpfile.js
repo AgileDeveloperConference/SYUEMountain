@@ -15,7 +15,10 @@ gulp.task('hint',function(){
 
 gulp.task('test', function () {
     return gulp.src(testFiles, {read: false})
-           .pipe(mocha({reporter: 'nyan'}));
+           .pipe(mocha({reporter: 'nyan'}))
+					 .once('end', function () {
+     				 process.exit();
+				   });
 });
 
 gulp.task('develop', function () {
