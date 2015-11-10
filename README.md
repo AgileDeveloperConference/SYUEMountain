@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AgileDeveloperConference/SYUEMountain.svg)](https://travis-ci.org/AgileDeveloperConference/SYUEMountain)
+
 #SnowMoutain RESTFul Api 
 ---
 ## Post: /Users
