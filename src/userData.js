@@ -145,23 +145,47 @@ function deleteUser(userId){
     }
   });
 }
- 
+function fbUIDisLegal(fbUID, deferred){
+
+	User.find({fbUID: fbUID },function(err,user){
+		var res={};
+		if (err) {console.log(err)}
+		else if (!err){
+			if(user.length!==0){
+				res = {
+				    "vaild" : "fbUIDisSuccess"
+				};
+				deferred.resolve(res);
+			}else{
+				res = {
+				    "vaild" : "fbUIDisError"
+				};
+				deferred.resolve(res);
+			}
+		}
+	});
+}
 module.exports = {
-	getFBUID:function(accessToken){
+	getFBUID: function(accessToken){
 		return getFBUID(accessToken);
 	},
-	saveUser:function(userId,name,email){
+	saveUser: function(userId, name, email){
 		var deferred = new promise.Deferred();
 		saveUser(userId,name,email,deferred);
 		return deferred;
   	},
-	deleteUser:function(userId){
+	deleteUser: function(userId){
 			deleteUser(userId);
   	},
 	setPath: function(fbUID, roadId){
 		return setPath(fbUID, roadId);
 	},
-	getStartTime:function(fbUID){
+	getStartTime: function(fbUID){
 		return getStartTime(fbUID);
+	},
+	fbUIDisLegal: function(fbUID){
+		var deferred = new promise.Deferred();
+		fbUIDisLegal(fbUID,deferred);
+		return deferred;
 	}
 };

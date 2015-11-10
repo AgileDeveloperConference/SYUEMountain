@@ -1,6 +1,11 @@
+[![Build Status](https://travis-ci.org/AgileDeveloperConference/SYUEMountain.svg)](https://travis-ci.org/AgileDeveloperConference/SYUEMountain)
+
 #SnowMoutain RESTFul Api
 
 ##Content-type:application/x-www-form-urlencoded 
+=======
+
+#SnowMoutain RESTFul Api 
 ---
 ## Post: /Users
 ###說明
@@ -103,7 +108,8 @@
 ###備註
 
 	S01:Success
-	E01:Fail
+	E03:FbUID isn't exist
+	E04:Invaild roadId
 
 
 ###User(Collection)	

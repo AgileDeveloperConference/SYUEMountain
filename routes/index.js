@@ -51,20 +51,36 @@ router.post('/Users/:fbUID/Paths', function (req, res){
 	var fbUID = req.params.fbUID;
   	var roadId = req.body.roadId;
 	var result = {};
-	console.log(roadId);
-	if(roadId === null || roadId === undefined ){
-		result = {
-		    "resultCode": "E01",
-		    "resultmsg" : "Error Params"
-		};	
-		res.json(result);
-	}else{
-		var data1 = userData.setPath(fbUID, roadId);
-		promise.when(data1).done(function(){
-			var arg = arguments;
-			res.json(arg[0]);
-		})		
-	}
+	var vaildFBUID = userData.fbUIDisLegal(fbUID);
+
+	promise.when(vaildFBUID).done(function(){
+		var arg = arguments;
+		// exist fbUID
+		if(arg[0].vaild=="fbUIDisSuccess"){
+			if(roadId === null || roadId === undefined || (roadId<1 || roadId >3 )|| roadId != parseInt(roadId)){
+				//Invaild RoadId
+				result = {
+				    "resultCode": "E04",
+				    "resultmsg" : "Invaild roadId" 
+				};	
+				res.json(result);
+			}else{
+				var data1 = userData.setPath(fbUID, roadId);
+				promise.when(data1).done(function(){
+					var arg = arguments;
+					res.json(arg[0]);
+				})	
+			}
+		//error fbUID
+		}else{
+		 	result = {
+		    	"resultCode": "E03",
+		    	"resultmsg" : "FbUID isn't exist"
+			};	
+			res.json(result);
+		}
+	});
+
 });
 router.post('/Users/:fbUID/Paths/:roadId', function (req, res){
 	var fbUID = req.params.fbUID;
