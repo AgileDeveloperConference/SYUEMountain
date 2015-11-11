@@ -21,8 +21,6 @@ describe("Set User complete path and Add contributeValue to History ",function()
 		contributeHistoryModel.deleteContributeHistory(userId);
 		var historyPromise = contributeHistoryModel.saveContributeHistory(userId,contributeValue,roadId,dateStart);
 		historyPromise.done(function(data){
-			console.log('contribute history')
-			console.log(data);
 			if(data.resultCode){
 				assert("S01",data.resultCode);	
 				done();

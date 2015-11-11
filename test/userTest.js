@@ -1,5 +1,3 @@
-
-
 'use strict'
 
 // Assert Library
@@ -20,7 +18,6 @@ describe("Save user in mongodb and set selected Path",function(){
 		userModel.deleteUser(id);	
 		var userPromise = userModel.saveUser(id,name,email);
 		userPromise.done(function(data){
-			console.log(data);
 			if(data.resultCode){
 				assert("S01",data.resultCode);	
 				done();
