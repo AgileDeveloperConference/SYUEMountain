@@ -48,7 +48,6 @@ describe("Query donate record",function(){
 			var dataPromise = donateData.queryData(5678);
 			dataPromise.done(function(data){
 				//compare data and testdata
-				
 				//delete data just store
 				donateData.deleteTestData(5678);
 

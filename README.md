@@ -1,10 +1,13 @@
 [![Build Status](https://travis-ci.org/AgileDeveloperConference/SYUEMountain.svg)](https://travis-ci.org/AgileDeveloperConference/SYUEMountain)
 
+<<<<<<< HEAD
 #SnowMoutain RESTFul Api
 
 ##Content-type:application/x-www-form-urlencoded 
 =======
 
+=======
+>>>>>>> develop
 #SnowMoutain RESTFul Api 
 ---
 ## Post: /Users
@@ -249,7 +252,6 @@
 ###備註
 	
 	備註
-
 
 
 

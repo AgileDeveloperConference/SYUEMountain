@@ -8,7 +8,7 @@ var model = require("./model/trafficModel")();
 model.title = "雪山隧道";
 model.name = "國道五號";
 model.roadId = "4";
-
+model.distance = 38.6;
 var url ="http://pda.freeway.gov.tw/m2/pdatraveltime/calc/r/1/fw/10050/fl/0/tw/10050/tl/38600";
 var distance = 38.6;
 

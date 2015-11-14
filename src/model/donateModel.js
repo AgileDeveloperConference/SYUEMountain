@@ -15,7 +15,7 @@ if(mongoose.connection.readyState == 0){
 }
 module.exports = mongoose.model('DonateHistory',new Schema({
 		fbUID : String,
-		date : Number,
+		date : Date,
 		charityID : Number,
 		contributeValue:Number
 }));
