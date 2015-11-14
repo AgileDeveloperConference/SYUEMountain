@@ -41,11 +41,21 @@ function deleteTestData(fbUID){
 function queryData(fbUID, deferred){
 	var res = {};
 	Donate.find({fbUID:fbUID},function(err,data){
-		if (err) {console.log(err)}
-		else if(!err){
-			res = data ; 
-		}
-		deferred.resolve(res);
+		if (err) {console.log(err)};
+
+		var result = [],
+				length = data.length;
+	    data.map(function(e,i) {
+	    	var obj = {};
+				obj.fbUID = e.fbUID;
+				obj.date = Date.parse(e.date)/1000;
+				obj.charityId = e.charityID;
+				obj.contributeValue =  e.contributeValue;
+				result.push(obj);
+			if(i == length-1){
+				deferred.resolve(result);
+			}
+	    });
 	});
 }
 module.exports = {

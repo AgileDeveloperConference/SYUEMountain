@@ -162,7 +162,7 @@ router.get('/Users/:fbUID/ContributeHistorys', function(req, res) {
 		var arg = arguments;
 				argCount = arg.length;
 		// console.log(arg[0]);
-		res.json(arg);
+		res.json(arg[0]);
 	})
 });
 
