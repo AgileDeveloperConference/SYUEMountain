@@ -4,7 +4,6 @@
 
 function setContributes(result){
 	var snowMoutain = findTarget("雪山隧道",result);
-	snowMoutain.speed = 30;
 	if(snowMoutain.speed <= 40){
 		calcContributes(result);
 	}else{
