@@ -16,15 +16,9 @@ gulp.task('hint',function(){
 gulp.task('test', function () {
     return gulp.src(testFiles, {read: false})
            .pipe(mocha({reporter: 'nyan'}))
-<<<<<<< HEAD
-					 .once('end', function () {
-     				 process.exit();
-				   });
-=======
            .once('end', function () {
              process.exit();
            });
->>>>>>> develop
 });
 
 gulp.task('develop', function () {

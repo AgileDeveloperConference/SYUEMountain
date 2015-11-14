@@ -27,11 +27,7 @@
     "gulp-nodemon": "^2.0.2",
     "gulp-plumber": "^1.0.0"
   },
-<<<<<<< HEAD
-	 "scripts": {
-=======
    "scripts": {
->>>>>>> develop
     "test": "gulp test"
   }
 }
