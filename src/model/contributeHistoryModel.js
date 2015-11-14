@@ -10,7 +10,6 @@ var mongodbUri = config.dbURL;
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 
 
-
 if(mongoose.connection.readyState == 0){
   mongoose.connect(mongooseUri, options);
 }
