@@ -29,6 +29,6 @@
   },
    "scripts": {
     "test": "gulp test -r jscoverage ",
-		"coveralls": "gulp test -R mocha-lcov-reporter -r jscoverage | coveralls"
+		"coveralls": "mocha tests/node-test.js -R mocha-lcov-reporter -r jscoverage | coveralls"
   }
 }
