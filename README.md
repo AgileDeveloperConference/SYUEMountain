@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/AgileDeveloperConference/SYUEMountain.svg)](https://travis-ci.org/AgileDeveloperConference/SYUEMountain)
 
+[![Coverage Status](https://coveralls.io/repos/AgileDeveloperConference/SYUEMountain/badge.svg?branch=master&service=github)](https://coveralls.io/github/AgileDeveloperConference/SYUEMountain?branch=master)
 #SnowMoutain RESTFul Api
 
 ##Content-type:application/x-www-form-urlencoded 

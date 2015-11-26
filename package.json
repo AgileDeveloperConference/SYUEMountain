@@ -25,9 +25,11 @@
     "gulp-livereload": "^3.8.0",
     "gulp-mocha": "^2.1.3",
     "gulp-nodemon": "^2.0.2",
-    "gulp-plumber": "^1.0.0"
+    "gulp-plumber": "^1.0.0",
+    "jscoverage": "^0.6.0"
   },
-   "scripts": {
-    "test": "gulp test"
+  "scripts": {
+    "test": "mocha test/ -r jscoverage ",
+    "coveralls": "mocha test/ -R mocha-lcov-reporter -r jscoverage | coveralls"
   }
 }
